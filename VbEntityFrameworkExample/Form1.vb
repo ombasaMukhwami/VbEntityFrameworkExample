@@ -5,9 +5,11 @@
     End Sub
 
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ProgressBar1.Visible = True
+        CheckedListBox1.Items.Clear()
 
         Using db = New UnitOfWork(New EmployeeDbContext())
-
+            Dim tt = Await db.Employees.GetAll()
             Dim test = Await db.Departments.GetAll()
             Dim departments = test.ToList().Select(Function(x) New Testing With {
                                                     .Id = x.Id,
@@ -15,10 +17,11 @@
                                                    }).ToList()
             Dim xtend = departments.Select(Function(x) New With {
                                            x.Id, x.Name
-                                           }).FirstOrDefault()
+                                           }).ToList()
 
-            Dim gg = xtend.Name
+            xtend.ForEach(Sub(x) CheckedListBox1.Items.Add($"{x.Id}-{x.Name}"))
         End Using
+        ProgressBar1.Visible = False
     End Sub
 End Class
 

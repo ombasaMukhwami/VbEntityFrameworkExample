@@ -12,6 +12,6 @@ Public Class Employee
     Public Property Salary() As Decimal
 
     Public Property DepartmentId() As Integer
-    Public Overridable Property Department() As Department
+    Public Property Department() As Department
 End Class
 

@@ -1,6 +1,7 @@
 ﻿Public Class UnitOfWork
     Implements IUnitOfWork
 
+    Private disposed As Boolean
     Private ReadOnly _context As EmployeeDbContext
     Private ReadOnly Property _employees As IEmployeeRepository
     Private ReadOnly Property _departments As IDepartmentRepository
@@ -26,8 +27,9 @@
     End Sub
 
     Protected Overridable Sub Dispose(ByVal disposing As Boolean)
-        If disposing Then
+        If Not disposed AndAlso disposing Then
             _context.Dispose()
+            disposed = True
         End If
     End Sub
 End Class
