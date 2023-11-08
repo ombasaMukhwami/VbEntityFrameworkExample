@@ -1,5 +1,5 @@
 ﻿Imports System.Data.Entity
-Imports System.Runtime.Remoting.Contexts
+Imports System.Linq.Expressions
 
 Public Class DepartmentRepository
     Inherits GenericRepository(Of Department)
